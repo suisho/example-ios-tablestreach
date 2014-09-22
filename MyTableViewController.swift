@@ -52,16 +52,22 @@ class MyTableViewController: UITableViewController {
         //let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
         let cell = UITableViewCell()
         cell.textLabel?.numberOfLines = 0
+        cell.detailTextLabel?.numberOfLines=0
         // Configure the cell...
         //println( doc.body[indexPath.row])
         cell.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
-
         if indexPath.row < 3{
             cell.textLabel?.text = doc.body[indexPath.row]
         }else{
             let img = UIImage(named: "scratch.jpg")
+            cell.imageView?.frame = CGRectMake(0, 0, 200, 200)
+            cell.imageView?.bounds = CGRectMake(0, 0, 200, 200)
+            cell.imageView?.autoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth
+            cell.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+            cell.imageView?.clipsToBounds = true
             cell.imageView?.image = img
         }
+        //tableView.reloadData()
         
         return cell
     }
