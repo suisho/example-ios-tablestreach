@@ -66,6 +66,7 @@ class MyTableViewController: UITableViewController {
             cell.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
             cell.imageView?.clipsToBounds = true
             cell.imageView?.image = img
+            
         }
         //tableView.reloadData()
         
