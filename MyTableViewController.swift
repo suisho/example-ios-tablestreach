@@ -8,24 +8,26 @@
 
 import UIKit
 class Documents{
-    var body: [String] = [
-        "あああああああああああああああああああああああああああ",
-        "いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい",
-        "ううう"
-    ]
+    var body: [String] = []
+    init(rep : Int){
+        for i in 1...rep{
+            body.append("あああああああああああああああああああああああああああ" + String(i))
+        }
+    }
 }
 class MyTableViewController: UITableViewController {
     
-    let doc = Documents()
+    let doc = Documents(rep: 5)
+    var docb : DocumentBuilder?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        docb = DocumentBuilder(strings: doc.body, font: UIFont.systemFontOfSize(17))
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,17 +49,33 @@ class MyTableViewController: UITableViewController {
         return doc.body.count + 1
     }
 
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        let h = docb!.size(300).height
+        println(h)
+        return h
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        //let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ruid_label_cell") as MyTableCell
+        //cell.myTextView.attributedText = docb?.attributedStringc
+        cell.myLabel.attributedText = docb?.attributedString
+        cell.contentView.frame = CGRect(
+            x: cell.myLabel.frame.origin.x,
+            y: cell.myLabel.frame.origin.y,
+            width: docb!.attributedString.size().width,
+            height: docb!.attributedString.size().height)
+        return cell
+    }
+    func foo(indexPath: NSIndexPath) -> UITableViewCell{
         let cell = UITableViewCell()
         cell.textLabel?.numberOfLines = 0
-        cell.detailTextLabel?.numberOfLines=0
-        // Configure the cell...
-        //println( doc.body[indexPath.row])
         cell.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
-        if indexPath.row < 3{
-            cell.textLabel?.text = doc.body[indexPath.row]
+
+        if indexPath.row <  10 {
+            cell.textLabel?.attributedText = docb?.attributedString
+            //cell.textLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping
+            //cell.textLabel?.text = doc.body[indexPath.row - 1]
         }else{
             let img = UIImage(named: "scratch.jpg")
             cell.imageView?.frame = CGRectMake(0, 0, 200, 200)
@@ -66,39 +84,17 @@ class MyTableViewController: UITableViewController {
             cell.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
             cell.imageView?.clipsToBounds = true
             cell.imageView?.image = img
+            cell.imageView?.sd_setImageWithURL(NSURL(string:"http://suisho.github.io/scratch.jpg"))
             
         }
         //tableView.reloadData()
         
         return cell
     }
+}
+
+class MyTableCell : UITableViewCell{
     
-
-
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView!, moveRowAtIndexPath fromIndexPath: NSIndexPath!, toIndexPath: NSIndexPath!) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView!, canMoveRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    @IBOutlet var myLabel: UILabel!
+    @IBOutlet var myTextView: UITextView!
 }
