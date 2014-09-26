@@ -11,7 +11,8 @@ class Documents{
     var body: [String] = []
     init(rep : Int){
         for i in 1...rep{
-            body.append("あああああああああああああああああああああああああああ" + String(i))
+            let htmlString = "<b>あ</b>あああ<img src='http://suisho.github.io/scratch.jpg' width=300 height=300>あああああああああああああああああああああああ"
+            body.append(htmlString + String(i))
         }
     }
 }
@@ -59,6 +60,7 @@ class MyTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ruid_label_cell") as MyTableCell
         //cell.myTextView.attributedText = docb?.attributedStringc
+        return foo(indexPath)
         cell.myLabel.attributedText = docb?.attributedString
         cell.contentView.frame = CGRect(
             x: cell.myLabel.frame.origin.x,
@@ -73,6 +75,7 @@ class MyTableViewController: UITableViewController {
         cell.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
 
         if indexPath.row <  10 {
+            
             cell.textLabel?.attributedText = docb?.attributedString
             //cell.textLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping
             //cell.textLabel?.text = doc.body[indexPath.row - 1]

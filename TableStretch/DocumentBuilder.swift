@@ -12,11 +12,19 @@ class DocumentBuilder: NSObject {
     let attributedString : NSAttributedString
     
     init(strings: [String], font : UIFont){
+        
         let buffer = NSMutableAttributedString()
         for str in strings{
-            let at = NSAttributedString(string: str + "\n", attributes: [
-                NSFontAttributeName: font
-            ])
+            
+            let data = str.dataUsingEncoding(NSUTF32StringEncoding, allowLossyConversion: true)
+            //let data = NSData(str, options: NSUTF8StringEncoding)
+            let attr = [
+                NSFontAttributeName: font,
+                NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType
+            ]
+            let at = NSAttributedString(data: data, options: attr, documentAttributes: nil, error: nil)
+            
+            //let at = NSAttributedString(string: str + "\n", attributes: attr)
             buffer.appendAttributedString(at)
         }
         attributedString = buffer
