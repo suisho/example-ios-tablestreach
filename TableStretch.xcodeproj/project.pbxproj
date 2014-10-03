@@ -51,6 +51,7 @@
 		D524EB6919CFA896007605DD /* Foo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Foo.h; sourceTree = "<group>"; };
 		D524EB6A19CFA896007605DD /* Foo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Foo.m; sourceTree = "<group>"; };
 		D524EB6C19D44AE6007605DD /* DocumentBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentBuilder.swift; sourceTree = "<group>"; };
+		D527357A19DE282E004F0492 /* MyPlayground2.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground2.playground; sourceTree = "<group>"; };
 		E960805B609448109BA33E3B /* Pods-TableStretch.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TableStretch.xcconfig"; path = "Pods/Pods-TableStretch.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +110,7 @@
 				D521676919CE521E00839BD3 /* ViewController.swift */,
 				D521676B19CE521E00839BD3 /* Main.storyboard */,
 				D521678719CE59CE00839BD3 /* MyPlayground.playground */,
+				D527357A19DE282E004F0492 /* MyPlayground2.playground */,
 				D521676E19CE521E00839BD3 /* Images.xcassets */,
 				D521677019CE521E00839BD3 /* LaunchScreen.xib */,
 				D521676519CE521E00839BD3 /* Supporting Files */,

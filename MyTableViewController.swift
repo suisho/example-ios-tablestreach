@@ -15,6 +15,21 @@ class Documents{
         }
     }
 }
+
+class DocumentLabel : UILabel{
+    func setImage(url : NSURL, complete :()-> Void){
+        var placeholder = NSAttributedString(string:"loading")
+        let progress { (a :Int, b: Int) -> in
+            println("progress")
+        }
+        SDWebImageManager.sharedManager().downloadImageWithURL(<#url: NSURL!#>, options: <#SDWebImageOptions#>, progress: { (<#Int#>, <#Int#>) -> Void in
+            <#code#>
+        }, completed: <#SDWebImageCompletionWithFinishedBlock!##(UIImage!, NSError!, SDImageCacheType, Bool, NSURL!) -> Void#>)
+        SDWebImageManager.sharedManager().downloadImageWithURL(url, options: SDWebImageOptions.RetryFailed, progress: nil) { (img :UIImage!, err:NSError!, cacheType: SDImageCacheType, finished:Bool, imageUrl:NSURL!) -> Void in
+            // do
+        }
+    }
+}
 class MyTableViewController: UITableViewController {
     
     let doc = Documents(rep: 5)
